@@ -1,0 +1,82 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define STACK_SIZE 10
+
+int Stack[STACK_SIZE];
+int top = -1;
+
+int push(int dat);
+int pop(void);
+int printstack(void);
+
+int main(void) {
+    int choice;
+    int value;
+
+    while (1) {
+        printf("Stack Program Menu:\n");
+        printf("1. Push Value\n");
+        printf("2. Pop Value\n");
+        printf("3. Print Stack\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter a value to push: ");
+                scanf("%d", &value);
+                push(value);
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                printstack();
+                break;
+            case 4:
+                printf("Exiting program.\n");
+                exit(0);
+            default:
+                printf("Invalid choice. Please enter a valid menu option.\n");
+        }
+    }
+
+    return 0;
+}
+
+int push(int dat) {
+    if (top >= STACK_SIZE - 1) {
+        printf("Stack Overflow. Cannot push more elements.\n");
+    } else {
+        top++;
+        Stack[top] = dat;
+        printf("Pushed %d onto the stack.\n", dat);
+    }
+    return 0;
+}
+
+int pop(void) {
+    if (top <= -1) {
+        printf("Stack Underflow. Cannot pop from an empty stack.\n");
+    } else {
+        int popped = Stack[top];
+        Stack[top] = 0;
+        top--;
+        printf("Popped %d from the stack.\n", popped);
+    }
+    return 0;
+}
+
+int printstack(void) {
+    if (top == -1) {
+        printf("The stack is empty.\n");
+    } else {
+        printf("Stack contents:\n");
+        for (int i = top; i >= 0; i--) {
+            printf("%d\n", Stack[i]);
+        }
+    }
+    return 0;
+}
