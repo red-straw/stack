@@ -1,0 +1,9 @@
+#include<stdio.h>
+int sp=-1;
+int v[1000];
+void push(int i){ v[++sp] = i; }
+int pop(){ return(v[sp--]); }
+void main(){
+   push(1); push(2); push(3);
+   printf("%d\n", pop()); printf("%d\n", pop()); printf("%d\n", pop());
+}
